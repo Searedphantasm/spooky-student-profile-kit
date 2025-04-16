@@ -13,8 +13,11 @@ import {
   ClipboardCheck, 
   GraduationCap,
   Search,
-  ChevronRight 
+  ChevronRight,
+  Menu 
 } from "lucide-react";
+import { useState as useHookState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const timeSpendingData = [
   { day: "Mon", hours: 4 },
@@ -29,22 +32,40 @@ const timeSpendingData = [
 export default function Index() {
   const [activeTab, setActiveTab] = useState(0);
   const [timeFrame, setTimeFrame] = useState<"daily" | "weekly" | "yearly">("weekly");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const isMobile = useIsMobile();
   
   return (
     <div className="flex h-screen overflow-hidden bg-halloween-base100 text-halloween-baseContent">
-      <Sidebar />
+      {(!isMobile || menuOpen) && (
+        <div 
+          className={`${isMobile ? 'fixed inset-0 z-30 bg-halloween-base100' : 'relative'}`}
+        >
+          <Sidebar onClose={isMobile ? () => setMenuOpen(false) : undefined} />
+        </div>
+      )}
       
       <div className="flex-1 overflow-y-auto">
-        <div className="py-6 px-8">
+        <div className="py-4 px-4 md:py-6 md:px-8">
           {/* Header */}
           <div className="flex justify-between items-center">
-            <div>
-              <h2 className="text-halloween-baseContent/70">Welcome Back!</h2>
-              <h1 className="text-3xl font-bold mt-1">Minhajul Islam</h1>
+            <div className="flex items-center gap-2">
+              {isMobile && (
+                <button 
+                  onClick={() => setMenuOpen(!menuOpen)} 
+                  className="p-1 text-halloween-baseContent"
+                >
+                  <Menu size={24} />
+                </button>
+              )}
+              <div>
+                <h2 className="text-halloween-baseContent/70 text-sm md:text-base">Welcome Back!</h2>
+                <h1 className="text-xl md:text-3xl font-bold mt-0.5">Minhajul Islam</h1>
+              </div>
             </div>
             
-            <div className="flex items-center gap-4">
-              <div className="relative">
+            <div className="flex items-center gap-2 md:gap-4">
+              <div className="relative hidden md:block">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-halloween-baseContent/50" size={18} />
                 <input 
                   type="text" 
@@ -52,14 +73,14 @@ export default function Index() {
                   className="pl-10 pr-4 py-2 bg-halloween-base200 border border-halloween-base300 rounded-lg w-[260px] text-sm focus:outline-none focus:ring-1 focus:ring-halloween-primary"
                 />
               </div>
-              <div className="h-10 w-10 rounded-full overflow-hidden">
+              <div className="h-8 w-8 md:h-10 md:w-10 rounded-full overflow-hidden">
                 <img src="/avatar-1.png" alt="User" className="h-full w-full object-cover" />
               </div>
             </div>
           </div>
           
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-6 mt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 mt-6 md:mt-8">
             <StatsCard 
               title="Enrolled Courses" 
               value="12" 
@@ -78,7 +99,7 @@ export default function Index() {
           </div>
           
           {/* Courses */}
-          <div className="mt-8">
+          <div className="mt-6 md:mt-8">
             <Tabs 
               tabs={["Enrolled Courses", "In Progress", "Upcomings Lessons"]} 
               activeTab={activeTab} 
@@ -111,26 +132,26 @@ export default function Index() {
           </div>
           
           {/* Bottom Section */}
-          <div className="grid grid-cols-3 gap-6 mt-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mt-6 md:mt-8">
             {/* Time Spending */}
-            <div className="bg-halloween-base200 rounded-xl p-5 col-span-1">
-              <div className="flex items-center justify-between">
+            <div className="bg-halloween-base200 rounded-xl p-4 md:p-5 col-span-1">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <h3 className="font-semibold">Time Spendings</h3>
                 <div className="flex items-center space-x-2">
                   <button 
-                    className={`px-3 py-1 text-xs rounded-full ${timeFrame === 'daily' ? 'bg-halloween-base300' : ''}`}
+                    className={`px-2 py-1 text-xs rounded-full ${timeFrame === 'daily' ? 'bg-halloween-base300' : ''}`}
                     onClick={() => setTimeFrame('daily')}
                   >
                     Daily
                   </button>
                   <button 
-                    className={`px-3 py-1 text-xs rounded-full ${timeFrame === 'weekly' ? 'bg-halloween-primary text-halloween-primaryContent' : ''}`}
+                    className={`px-2 py-1 text-xs rounded-full ${timeFrame === 'weekly' ? 'bg-halloween-primary text-halloween-primaryContent' : ''}`}
                     onClick={() => setTimeFrame('weekly')}
                   >
                     Weekly
                   </button>
                   <button 
-                    className={`px-3 py-1 text-xs rounded-full ${timeFrame === 'yearly' ? 'bg-halloween-base300' : ''}`}
+                    className={`px-2 py-1 text-xs rounded-full ${timeFrame === 'yearly' ? 'bg-halloween-base300' : ''}`}
                     onClick={() => setTimeFrame('yearly')}
                   >
                     Yearly
@@ -145,7 +166,7 @@ export default function Index() {
             </div>
             
             {/* Assignments */}
-            <div className="bg-halloween-base200 rounded-xl p-5 col-span-1">
+            <div className="bg-halloween-base200 rounded-xl p-4 md:p-5 col-span-1">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-semibold">Assignments</h3>
                 <a href="#" className="text-sm flex items-center text-halloween-primary">
@@ -170,9 +191,9 @@ export default function Index() {
             </div>
             
             {/* Instructors & Points */}
-            <div className="flex flex-col gap-6 col-span-1">
+            <div className="flex flex-col gap-4 md:gap-6 col-span-1">
               {/* Instructors */}
-              <div className="bg-halloween-base200 rounded-xl p-5 flex-1">
+              <div className="bg-halloween-base200 rounded-xl p-4 md:p-5 flex-1">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="font-semibold">Instructors</h3>
                 </div>
@@ -199,7 +220,7 @@ export default function Index() {
               </div>
               
               {/* Points Chart */}
-              <div className="bg-halloween-base200 rounded-xl p-5 flex-1">
+              <div className="bg-halloween-base200 rounded-xl p-4 md:p-5 flex-1">
                 <div className="mb-2">
                   <h3 className="font-semibold">Point Chart</h3>
                 </div>
