@@ -21,7 +21,7 @@ export function CourseCard({
     <div className="flex items-center justify-between p-4 bg-halloween-base200 rounded-lg">
       <div className="flex-1">
         <h3 className="text-halloween-baseContent font-medium text-base">{title}</h3>
-        <p className="text-halloween-baseContent/70 text-sm mt-1">Instructor: {instructor}</p>
+        <p className="text-halloween-baseContent/70 text-sm mt-1">استاد: {instructor}</p>
       </div>
       
       <div className="flex items-center gap-2">

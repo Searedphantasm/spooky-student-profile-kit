@@ -13,20 +13,20 @@ import {
   ClipboardCheck, 
   GraduationCap,
   Search,
-  ChevronRight,
+  ChevronLeft,
   Menu 
 } from "lucide-react";
 import { useState as useHookState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const timeSpendingData = [
-  { day: "Mon", hours: 4 },
-  { day: "Tue", hours: 12 },
-  { day: "Wed", hours: 8 },
-  { day: "Thu", hours: 6 },
-  { day: "Fri", hours: 10 },
-  { day: "Sat", hours: 2 },
-  { day: "Sun", hours: 3 },
+  { day: "دو", hours: 4 },
+  { day: "سه", hours: 12 },
+  { day: "چهار", hours: 8 },
+  { day: "پنج", hours: 6 },
+  { day: "جمعه", hours: 10 },
+  { day: "شنبه", hours: 2 },
+  { day: "یک", hours: 3 },
 ];
 
 export default function Index() {
@@ -59,22 +59,22 @@ export default function Index() {
                 </button>
               )}
               <div>
-                <h2 className="text-halloween-baseContent/70 text-sm md:text-base">Welcome Back!</h2>
-                <h1 className="text-xl md:text-3xl font-bold mt-0.5">Minhajul Islam</h1>
+                <h2 className="text-halloween-baseContent/70 text-sm md:text-base">!خوش برگشتی</h2>
+                <h1 className="text-xl md:text-3xl font-bold mt-0.5">منهاج الاسلام</h1>
               </div>
             </div>
             
             <div className="flex items-center gap-2 md:gap-4">
               <div className="relative hidden md:block">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-halloween-baseContent/50" size={18} />
+                <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-halloween-baseContent/50" size={18} />
                 <input 
                   type="text" 
-                  placeholder="Search for courses" 
-                  className="pl-10 pr-4 py-2 bg-halloween-base200 border border-halloween-base300 rounded-lg w-[260px] text-sm focus:outline-none focus:ring-1 focus:ring-halloween-primary"
+                  placeholder="جستجوی دوره‌ها" 
+                  className="pr-10 pl-4 py-2 bg-halloween-base200 border border-halloween-base300 rounded-lg w-[260px] text-sm focus:outline-none focus:ring-1 focus:ring-halloween-primary"
                 />
               </div>
               <div className="h-8 w-8 md:h-10 md:w-10 rounded-full overflow-hidden">
-                <img src="/avatar-1.png" alt="User" className="h-full w-full object-cover" />
+                <img src="/avatar-1.png" alt="کاربر" className="h-full w-full object-cover" />
               </div>
             </div>
           </div>
@@ -82,18 +82,18 @@ export default function Index() {
           {/* Stats */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 mt-6 md:mt-8">
             <StatsCard 
-              title="Enrolled Courses" 
-              value="12" 
+              title="دوره‌های ثبت‌نام شده" 
+              value="۱۲" 
               icon={BookOpen}
             />
             <StatsCard 
-              title="Test Taken" 
-              value="17" 
+              title="آزمون‌های گرفته شده" 
+              value="۱۷" 
               icon={ClipboardCheck}
             />
             <StatsCard 
-              title="Completed" 
-              value="25" 
+              title="تکمیل شده" 
+              value="۲۵" 
               icon={GraduationCap}
             />
           </div>
@@ -101,29 +101,29 @@ export default function Index() {
           {/* Courses */}
           <div className="mt-6 md:mt-8">
             <Tabs 
-              tabs={["Enrolled Courses", "In Progress", "Upcomings Lessons"]} 
+              tabs={["دوره‌های ثبت‌نام شده", "در حال انجام", "درس‌های پیش رو"]} 
               activeTab={activeTab} 
               onChange={setActiveTab}
             />
             
             <div className="mt-4 space-y-3">
               <CourseCard 
-                title="Learn Everything About Artificial Intelligence" 
-                instructor="Steve Harley" 
+                title="همه چیز درباره هوش مصنوعی" 
+                instructor="استیو هارلی" 
                 progress={75} 
                 totalLessons={12} 
                 completedLessons={9}
               />
               <CourseCard 
-                title="Learn Everything About Artificial Intelligence" 
-                instructor="Steve Harley" 
+                title="همه چیز درباره هوش مصنوعی" 
+                instructor="استیو هارلی" 
                 progress={25} 
                 totalLessons={12} 
                 completedLessons={3}
               />
               <CourseCard 
-                title="Learn Everything About Artificial Intelligence" 
-                instructor="Steve Harley" 
+                title="همه چیز درباره هوش مصنوعی" 
+                instructor="استیو هارلی" 
                 progress={50} 
                 totalLessons={12} 
                 completedLessons={6}
@@ -136,25 +136,25 @@ export default function Index() {
             {/* Time Spending */}
             <div className="bg-halloween-base200 rounded-xl p-4 md:p-5 col-span-1">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <h3 className="font-semibold">Time Spendings</h3>
+                <h3 className="font-semibold">زمان صرف شده</h3>
                 <div className="flex items-center space-x-2">
                   <button 
                     className={`px-2 py-1 text-xs rounded-full ${timeFrame === 'daily' ? 'bg-halloween-base300' : ''}`}
                     onClick={() => setTimeFrame('daily')}
                   >
-                    Daily
+                    روزانه
                   </button>
                   <button 
                     className={`px-2 py-1 text-xs rounded-full ${timeFrame === 'weekly' ? 'bg-halloween-primary text-halloween-primaryContent' : ''}`}
                     onClick={() => setTimeFrame('weekly')}
                   >
-                    Weekly
+                    هفتگی
                   </button>
                   <button 
                     className={`px-2 py-1 text-xs rounded-full ${timeFrame === 'yearly' ? 'bg-halloween-base300' : ''}`}
                     onClick={() => setTimeFrame('yearly')}
                   >
-                    Yearly
+                    سالانه
                   </button>
                 </div>
               </div>
@@ -168,23 +168,23 @@ export default function Index() {
             {/* Assignments */}
             <div className="bg-halloween-base200 rounded-xl p-4 md:p-5 col-span-1">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold">Assignments</h3>
+                <h3 className="font-semibold">تکالیف</h3>
                 <a href="#" className="text-sm flex items-center text-halloween-primary">
-                  See All <ChevronRight size={16} />
+                  مشاهده همه <ChevronLeft size={16} />
                 </a>
               </div>
               
               <div className="space-y-1">
                 <AssignmentCard
-                  title="The Impact Of Artificial Intelligence On Business Operations"
-                  instructor="Michael Heds"
-                  deadline="12 august 23"
+                  title="تأثیر هوش مصنوعی بر عملیات تجاری"
+                  instructor="مایکل هدز"
+                  deadline="۱۲ مرداد ۱۴۰۳"
                   status="due"
                 />
                 <AssignmentCard
-                  title="The Impact Of Artificial Intelligence On Business Operations"
-                  instructor="Michael Heds"
-                  deadline="12 august 23"
+                  title="تأثیر هوش مصنوعی بر عملیات تجاری"
+                  instructor="مایکل هدز"
+                  deadline="۱۲ مرداد ۱۴۰۳"
                   status="completed"
                 />
               </div>
@@ -195,25 +195,25 @@ export default function Index() {
               {/* Instructors */}
               <div className="bg-halloween-base200 rounded-xl p-4 md:p-5 flex-1">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-semibold">Instructors</h3>
+                  <h3 className="font-semibold">استادان</h3>
                 </div>
                 
                 <div>
                   <InstructorCard
-                    name="Jackson Martinez"
-                    course="Fundamentals of Digital Marketing"
+                    name="جکسون مارتینز"
+                    course="اصول بازاریابی دیجیتال"
                     avatarUrl="/avatar-jackson.png"
                     className="mb-2"
                   />
                   <InstructorCard
-                    name="Olivia Johnson"
-                    course="SEO Mastery Course"
+                    name="الیویا جانسون"
+                    course="دوره تسلط بر سئو"
                     avatarUrl="/avatar-olivia.png"
                     className="mb-2"
                   />
                   <InstructorCard
-                    name="James Davis"
-                    course="Digital marketing for beginners"
+                    name="جیمز دیویس"
+                    course="بازاریابی دیجیتال برای مبتدیان"
                     avatarUrl="/avatar-james.png"
                   />
                 </div>
@@ -222,7 +222,7 @@ export default function Index() {
               {/* Points Chart */}
               <div className="bg-halloween-base200 rounded-xl p-4 md:p-5 flex-1">
                 <div className="mb-2">
-                  <h3 className="font-semibold">Point Chart</h3>
+                  <h3 className="font-semibold">نمودار امتیازات</h3>
                 </div>
                 <div className="relative">
                   <PointsChart 
@@ -234,16 +234,16 @@ export default function Index() {
                 
                 <div className="mt-4 space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm">Points On Course:</span>
-                    <span className="text-sm text-halloween-primary font-medium">45%</span>
+                    <span className="text-sm">امتیاز دوره:</span>
+                    <span className="text-sm text-halloween-primary font-medium">٪۴۵</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm">Points On Task:</span>
-                    <span className="text-sm text-halloween-accent font-medium">35%</span>
+                    <span className="text-sm">امتیاز تکالیف:</span>
+                    <span className="text-sm text-halloween-accent font-medium">٪۳۵</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm">Points On Assignment:</span>
-                    <span className="text-sm text-halloween-info font-medium">20%</span>
+                    <span className="text-sm">امتیاز تمرین‌ها:</span>
+                    <span className="text-sm text-halloween-info font-medium">٪۲۰</span>
                   </div>
                 </div>
               </div>

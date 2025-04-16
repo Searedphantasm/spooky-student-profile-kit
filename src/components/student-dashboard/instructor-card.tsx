@@ -25,7 +25,7 @@ export function InstructorCard({
       </div>
       <div>
         <h4 className="text-halloween-baseContent font-medium">{name}</h4>
-        <p className="text-halloween-baseContent/70 text-sm">Course: {course}</p>
+        <p className="text-halloween-baseContent/70 text-sm">دوره: {course}</p>
       </div>
     </div>
   );

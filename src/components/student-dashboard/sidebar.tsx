@@ -48,11 +48,11 @@ export function Sidebar({ onClose }: SidebarProps) {
   const currentPath = window.location.pathname;
 
   return (
-    <div className="w-[240px] h-screen bg-halloween-base100 border-r border-halloween-base300 flex flex-col relative">
+    <div className="w-[240px] h-screen bg-halloween-base100 border-l border-halloween-base300 flex flex-col relative">
       {onClose && (
         <button 
           onClick={onClose}
-          className="absolute right-2 top-2 p-1 text-halloween-baseContent hover:text-halloween-primary"
+          className="absolute left-2 top-2 p-1 text-halloween-baseContent hover:text-halloween-primary"
         >
           <X size={20} />
         </button>
@@ -60,7 +60,7 @@ export function Sidebar({ onClose }: SidebarProps) {
       
       <div className="p-4">
         <Link to="/" className="flex items-center gap-2">
-          <span className="text-halloween-primary font-bold text-xl">EduSpark</span>
+          <span className="text-halloween-primary font-bold text-xl">ادوسپارک</span>
         </Link>
       </div>
 
@@ -68,19 +68,19 @@ export function Sidebar({ onClose }: SidebarProps) {
         <div className="space-y-1">
           <SidebarItem 
             icon={BarChart3} 
-            label="Dashboard" 
+            label="داشبورد" 
             active={currentPath === "/"} 
             href="/" 
           />
           <SidebarItem 
             icon={BookOpen} 
-            label="My Courses" 
+            label="دوره‌های من" 
             active={currentPath === "/courses"} 
             href="/courses" 
           />
           <SidebarItem 
             icon={FileText} 
-            label="Assignments" 
+            label="تکالیف" 
             active={currentPath === "/assignments"} 
             href="/assignments" 
           />
@@ -89,25 +89,25 @@ export function Sidebar({ onClose }: SidebarProps) {
         <div className="mt-8 pt-4 border-t border-halloween-base300 space-y-1">
           <SidebarItem 
             icon={MessageSquare} 
-            label="Messages" 
+            label="پیام‌ها" 
             active={currentPath === "/messages"} 
             href="/messages" 
           />
           <SidebarItem 
             icon={Bell} 
-            label="Notifications" 
+            label="اعلان‌ها" 
             active={currentPath === "/notifications"} 
             href="/notifications" 
           />
           <SidebarItem 
             icon={Users} 
-            label="Instructors" 
+            label="استادان" 
             active={currentPath === "/instructors"} 
             href="/instructors" 
           />
           <SidebarItem 
             icon={Calendar} 
-            label="Calendar" 
+            label="تقویم" 
             active={currentPath === "/calendar"} 
             href="/calendar" 
           />
@@ -116,19 +116,19 @@ export function Sidebar({ onClose }: SidebarProps) {
         <div className="absolute bottom-4 left-0 right-0 px-2 space-y-1">
           <SidebarItem 
             icon={Settings} 
-            label="Settings" 
+            label="تنظیمات" 
             active={currentPath === "/settings"} 
             href="/settings" 
           />
           <SidebarItem 
             icon={HelpCircle} 
-            label="Support" 
+            label="پشتیبانی" 
             active={currentPath === "/support"} 
             href="/support" 
           />
           <div className="px-4 py-3 text-halloween-error flex items-center gap-3 rounded-lg cursor-pointer hover:bg-halloween-base200/60">
             <LogOut size={20} />
-            <span className="font-medium">Sign Out</span>
+            <span className="font-medium">خروج</span>
           </div>
         </div>
       </nav>

@@ -2,7 +2,7 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const daysOfWeek = ["دو", "سه", "چهار", "پنج", "جمعه", "شنبه", "یک"];
 
 interface TimeSpendingProps {
   data: {
@@ -22,10 +22,11 @@ export function TimeSpendingChart({ data, timeFrame }: TimeSpendingProps) {
           data={data}
           margin={{
             top: 5,
-            right: 5,
-            left: isMobile ? -25 : -10,
+            left: 5,
+            right: isMobile ? -25 : -10,
             bottom: 5,
           }}
+          layout="horizontal"
         >
           <CartesianGrid vertical={false} stroke="rgba(255,255,255,0.1)" />
           <XAxis 
@@ -33,12 +34,14 @@ export function TimeSpendingChart({ data, timeFrame }: TimeSpendingProps) {
             axisLine={false}
             tickLine={false}
             tick={{ fill: "oklch(96% 0.007 247.896)", fontSize: isMobile ? 10 : 12 }}
+            reversed={true}
           />
           <YAxis 
             tickCount={isMobile ? 4 : 7}
             axisLine={false}
             tickLine={false}
             tick={{ fill: "oklch(96% 0.007 247.896)", fontSize: isMobile ? 10 : 12 }}
+            orientation="right"
           />
           <Bar 
             dataKey="hours" 
